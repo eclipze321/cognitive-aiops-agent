@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  devops-agent:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - LOG_LEVEL=INFO
+      - LLM_ENDPOINT=http://llm:8000/llm
+      - OPA_ENDPOINT=http://opa:8181
+      - VAULT_URL=http://vault:8200
+    depends_on:
+      - opa
+      - vault
+  opa:
+    image: openpolicyagent/opa:latest
+    command: ["run", "--server"]
+    ports:
+      - "8181:8181"
+  vault:
+    image: hashicorp/vault:1.15
+    environment:
+      - VAULT_DEV_ROOT_TOKEN_ID=root
+      - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
+    ports:
+      - "8200:8200"
+    cap_add:
+      - IPC_LOCK

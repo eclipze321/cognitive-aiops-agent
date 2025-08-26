@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "devops-agent"
+version = "0.1.0"
+authors = [ {name="Your Name", email="you@example.com"} ]
+description = "Autonomous AI DevOps Agent"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+keywords = ["devops", "ai", "automation"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+
+[project.dependencies]
+flask = "3.0.3"
+requests = "2.32.3"
+docker = "7.1.0"
+paramiko = "3.4.0"
+numpy = "1.26.4"
+scikit-learn = "1.5.1"
+reportlab = "4.2.0"
+cryptography = "42.0.8"
+opa-client = "0.7.1"
+hvac = "2.3.0"
+websocket-client = "1.8.0"
+pydantic = "2.8.2"
+gitpython = "3.1.43"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+addopts = "-q"
